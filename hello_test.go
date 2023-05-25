@@ -2,22 +2,26 @@ package main
 
 import "testing"
 
-func TestHello(T *testing.T) {
-	T.Run("Should say 'Hello' ", func(t *testing.T) {
+func TestHello(t *testing.T) {
+	checkString := func(t *testing.T, expected string, result string) {
+		t.Helper()
+		if result != expected {
+			t.Errorf("result:'%s', expected:'%s'", result, expected)
+		}
+
+	}
+
+	t.Run("Should say 'Hello' ", func(t *testing.T) {
 		result := Hello("David")
 		expected := "Hello, David"
 
-		if result != expected {
-			T.Errorf("result:'%s', expected:'%s'", result, expected)
-		}
+		checkString(t, result, expected)
 	})
 
-	T.Run("Should say 'Hello World' if empty string ", func(t *testing.T) {
+	t.Run("Should say 'Hello World' if empty string ", func(t *testing.T) {
 		result := Hello("")
 		expected := "Hello, World"
 
-		if result != expected {
-			T.Errorf("result:'%s', expected:'%s'", result, expected)
-		}
+		checkString(t, expected, result)
 	})
 }
