@@ -30,4 +30,11 @@ func TestHello(t *testing.T) {
 
 		checkString(t, expected, result)
 	})
+
+	t.Run("Should support french language", func(t *testing.T) {
+		result := Hello("David", "French")
+		expected := "Bonjour, David"
+
+		checkString(t, expected, result)
+	})
 }
