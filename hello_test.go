@@ -8,19 +8,25 @@ func TestHello(t *testing.T) {
 		if result != expected {
 			t.Errorf("result:'%s', expected:'%s'", result, expected)
 		}
-
 	}
 
 	t.Run("Should say 'Hello' ", func(t *testing.T) {
-		result := Hello("David")
+		result := Hello("David", "")
 		expected := "Hello, David"
 
 		checkString(t, result, expected)
 	})
 
 	t.Run("Should say 'Hello World' if empty string ", func(t *testing.T) {
-		result := Hello("")
+		result := Hello("", "")
 		expected := "Hello, World"
+
+		checkString(t, expected, result)
+	})
+
+	t.Run("Should support spanish language", func(t *testing.T) {
+		result := Hello("David", "Spanish")
+		expected := "Hola, David"
 
 		checkString(t, expected, result)
 	})
